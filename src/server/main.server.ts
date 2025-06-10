@@ -1,3 +1,1 @@
-import { makeHello } from "shared/module";
-
-print(makeHello("main.server.ts"));
+const filename = "main.server.ts";
