@@ -1,2 +1,2 @@
 export * from "./data";
-export * from "./network/Definitions";
+export * from "./network";
