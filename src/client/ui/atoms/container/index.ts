@@ -1,2 +1,2 @@
 export * from "./Containers";
-export * from "./ShadowPanel";
+export * from "./GamePanel";

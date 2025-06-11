@@ -1,6 +1,7 @@
 import Fusion, { New, Children, Computed, Value, OnEvent, PropertyTable } from "@rbxts/fusion";
-import { Flex, GameColors, Layout, ShadowGradient } from "../../quarks";
+import { GameColors, Layout, ShadowGradient } from "../../quarks";
 
+/* =============================================== Scroll Component ========================================= */
 function ScrollContent(children: Fusion.ChildrenValue, layout?: UIListLayout | UIGridLayout) {
 	return New("ScrollingFrame")({
 		Name: "ScrollContent",
@@ -18,6 +19,7 @@ function ScrollContent(children: Fusion.ChildrenValue, layout?: UIListLayout | U
 	});
 }
 
+/* =============================================== Content Component ========================================= */
 function Content(children: Fusion.ChildrenValue, layout?: UIListLayout | UIGridLayout) {
 	return New("Frame")({
 		Name: "Content",
@@ -31,7 +33,8 @@ function Content(children: Fusion.ChildrenValue, layout?: UIListLayout | UIGridL
 	});
 }
 
-export interface ShadowPanel extends PropertyTable<Frame> {
+/* =============================================== GamePanel Props ========================================= */
+export interface GamePanelProps extends PropertyTable<Frame> {
 	Scrolling?: boolean; // Optional property to enable scrolling
 	Children?: Fusion.ChildrenValue;
 	Layout?: UIListLayout | UIGridLayout; // Optional layout for scrollable children
@@ -42,7 +45,8 @@ export interface ShadowPanel extends PropertyTable<Frame> {
 	Stroke?: UIStroke; // Optional stroke for the panel
 }
 
-export const Panel = (props: ShadowPanel) => {
+/* =============================================== GamePanel Component ========================================= */
+export const GamePanel = (props: GamePanelProps) => {
 	// Hover State
 	const isHovered = Value(false);
 

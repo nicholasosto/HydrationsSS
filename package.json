@@ -6,7 +6,9 @@
     "build": "rbxtsc",
     "watch": "rbxtsc -w",
     "sync": "rojo serve",
-    "test": "rbx-test tests"
+    "test": "rbx-test tests",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix"
   },
   "keywords": [],
   "author": "",

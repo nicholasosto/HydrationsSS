@@ -1,5 +1,5 @@
 import Fusion, { New, Children } from "@rbxts/fusion";
-import { Panel } from "./ShadowPanel";
+import { GamePanel } from "./GamePanel";
 import { Flex, Layout } from "../../quarks";
 import { Players } from "@rbxts/services";
 import { PlayerAvatar } from "../Avatar";
@@ -36,8 +36,19 @@ export interface ContainerProps {
 /* ============================================== Container Components ========================================= */
 
 /* Character Card Container */
-export const CharacterCardContainer = (props: ContainerProps) => {
-	const containerFrame = Panel({
+const CharacterCardContainer = (props: ContainerProps) => {
+	// Resource Bars Container
+	const barsContainer = GamePanel({
+		Size: new UDim2(1, -100, 1, 0),
+		FlexInstance: Flex.Grow(),
+		Children: {
+			...props.Children, // Placeholder for resource bars
+		},
+		Layout: Layout.VerticleList(2),
+	});
+
+	// Component
+	const fusionComponent = GamePanel({
 		AnchorPoint: new Vector2(0, 0),
 		Size: Sizes.CharacterInfoCard,
 		Position: Positions.CharacterInfoCard,
@@ -47,15 +58,16 @@ export const CharacterCardContainer = (props: ContainerProps) => {
 		Layout: Layout.HorizontalList(5),
 		Children: {
 			Avatar: PlayerAvatar(),
-			ResourceBars: [], // Placeholder for resource bars
+			ResourceBars: barsContainer, // Placeholder for resource bars
 		},
 	});
-	return containerFrame;
+
+	return fusionComponent;
 };
 
 /* Currency Card Container */
-export const CurrencyCardContainer = (props: ContainerProps) => {
-	const containerFrame = Panel({
+const CurrencyCardContainer = (props: ContainerProps) => {
+	const containerFrame = GamePanel({
 		AnchorPoint: new Vector2(1, 0),
 		Size: Sizes.CurrencyCardContainer,
 		Position: Positions.CurrencyCardContainer,
@@ -68,8 +80,8 @@ export const CurrencyCardContainer = (props: ContainerProps) => {
 };
 
 /* Action Bar Container */
-export const ActionBarContainer = (props: ContainerProps) => {
-	const containerFrame = Panel({
+const ActionBarContainer = (props: ContainerProps) => {
+	const containerFrame = GamePanel({
 		AnchorPoint: new Vector2(0.5, 1),
 		Size: Sizes.ActionBarContainer,
 		Position: Positions.ActionBar,
@@ -83,8 +95,8 @@ export const ActionBarContainer = (props: ContainerProps) => {
 };
 
 /* Quest Toggles Container */
-export const QuestTogglesContainer = (props: ContainerProps) => {
-	const containerFrame = Panel({
+const QuestTogglesContainer = (props: ContainerProps) => {
+	const containerFrame = GamePanel({
 		AnchorPoint: new Vector2(0, 0),
 		Size: Sizes.QuestPanel,
 		Position: Positions.QuestPanel,
@@ -98,8 +110,8 @@ export const QuestTogglesContainer = (props: ContainerProps) => {
 };
 
 /* Menu Bar Container */
-export const MenuBarContainer = (props: ContainerProps) => {
-	const containerFrame = Panel({
+const MenuBarContainer = (props: ContainerProps) => {
+	const containerFrame = GamePanel({
 		AnchorPoint: new Vector2(0, 0),
 		Size: Sizes.MenuBarContainer,
 		Position: Positions.MenuBar,
@@ -110,4 +122,12 @@ export const MenuBarContainer = (props: ContainerProps) => {
 		Children: props.Children,
 	});
 	return containerFrame;
+};
+
+export const HUDContainers = {
+	CharacterCardContainer,
+	CurrencyCardContainer,
+	ActionBarContainer,
+	QuestTogglesContainer,
+	MenuBarContainer,
 };
