@@ -44,7 +44,7 @@ export const AttributesMeta: Record<AttributeKey, AttributeMeta> = {
 	vit: { displayName: "Vitality", iconId: "rbxassetid://121291227474039", min: 1, max: 999 },
 	int: { displayName: "Intellect", iconId: "rbxassetid://107600003376684", min: 1, max: 999 },
 	lck: { displayName: "Luck", iconId: "rbxassetid://114767496083209", min: 1, max: 999 },
-};
+} satisfies Record<AttributeKey, AttributeMeta>;
 
 // Default attributes with initial values
 export const DefaultAttributes: AttributesDTO = {

@@ -15,7 +15,7 @@ export const ValueImage = (props: ValueImageProps): Frame => {
 		Size: UDim2.fromScale(1, 1),
 		Padding: Pad.All(new UDim(0, 4)),
 		Children: {
-			Image: GameImage({ GameImage: props.GameImage }),
+			Image: GameImage({ Image: props.Image, Size: UDim2.fromScale(1, 1) }),
 			Label: GameText({ Text: textString.get() }),
 		},
 	});

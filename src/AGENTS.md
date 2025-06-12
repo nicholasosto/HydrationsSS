@@ -16,6 +16,7 @@ The purpose of this document is to provide a concise overview of coding conventi
 5. **Testing**: All components should be testable. Use the `TestParts` screen to add example tests for new components. Ensure that tests cover the expected behavior and edge cases of the component.
 6. Create a const export for simple example components when a new component is created. This allows for easy testing and demonstration of the component's functionality.
 7. **Documentation**: Use TSDoc comments to document components, including their purpose, properties, and events. This helps maintain clarity and understanding of the codebase.
+8. **Check the AGENTS_TODO.md file** for any additional tasks or components that need to be created. This file serves as a central place for tracking agent-created components and tasks.
 
 ## 3 Pitfalls to Avoid
 
