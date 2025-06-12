@@ -1,6 +1,29 @@
-import Fusion from "@rbxts/fusion";
+/// <reference types="@rbxts/types" />
 
-export interface GameText {
+/**
+ * @file        GameText.ts
+ * @module      GameText
+ * @layer       Client/Atom
+ * @description Simple text label wrapper with default styling.
+ *
+ * ╭───────────────────────────────╮
+ * │  Soul Steel · Coding Guide    │
+ * │  Fusion v4 · Strict TS · ECS  │
+ * ╰───────────────────────────────╯
+ *
+ * @author       Trembus
+ * @license      MIT
+ * @since        0.2.0
+ * @lastUpdated  2025-05-29 by Luminesa – Initial creation
+ *
+ * @dependencies
+ *   @rbxts/fusion ^0.4.0
+ */
+
+import Fusion, { New, Computed, Value } from "@rbxts/fusion";
+import { GameColors } from "../../quarks";
+
+export interface GameTextProps extends Fusion.PropertyTable<TextLabel> {
 	Text: Fusion.Value<string | number> | string | number;
 	TextSize?: number;
 	Size?: UDim2;
@@ -9,27 +32,19 @@ export interface GameText {
 	TextColor3?: Color3;
 }
 
-function getStringFromStringOrValue(value: string | number | Fusion.Value<string | number>): string {
-	const stateobject = value as Fusion.Value<string | number>;
-	if (stateobject !== undefined) {
-		return tostring(stateobject.get());
-	}
-	return stateobject;
-}
+export const GameText = (props: GameTextProps) => {
+	const textState = typeIs(props.Text, "table") ? (props.Text as Fusion.Value<string | number>) : Value(props.Text);
 
-export const GameText = (props: GameText) => {
-	const typeCheck = typeOf(props.Text);
-
-	return Fusion.New("TextLabel")({
-		Name: "GameText",
+	return New("TextLabel")({
+		Name: props.Name ?? "GameText",
 		AnchorPoint: props.AnchorPoint ?? new Vector2(0.5, 0.5),
 		BackgroundTransparency: 1,
 		FontFace: new Font("rbxasset://fonts/families/Inconsolata.json"),
 		Position: props.Position ?? UDim2.fromScale(0.5, 0.5),
 		Size: props.Size ?? UDim2.fromScale(1, 1),
 		TextSize: props.TextSize ?? 24,
-		Text: getStringFromStringOrValue(props.Text),
-		TextColor3: props.TextColor3 ?? new Color3(1, 1, 1),
+		Text: Computed(() => tostring(textState.get())),
+		TextColor3: props.TextColor3 ?? GameColors.TextDefault,
 		TextScaled: false,
 	});
 };
