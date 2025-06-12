@@ -31,14 +31,14 @@ export const AttributeControl = (props: AttributeControlProps) => {
 
 	// Attribute Name
 	const attributeName = GameText({
-		Text: displayName,
+		ValueText: displayName,
 		TextSize: 14,
 		TextColor3: Color3.fromRGB(255, 255, 255),
 	});
 
 	// Attribute Value
 	const attributeValue = GameText({
-		Text: tostring(attributeState.get()),
+		ValueText: tostring(attributeState.get()),
 	});
 
 	// Increment Button

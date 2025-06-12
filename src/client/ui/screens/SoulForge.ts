@@ -21,6 +21,7 @@ import Fusion, { Children, Hydrate, New, OnEvent, Value, Computed } from "@rbxts
 import { SoulForgeScreen } from "../references";
 import { GamePanel } from "../atoms/container";
 import { Layout, PanelSizes } from "../quarks";
+import { GameButton } from "../atoms";
 
 /* ============================================== Types ============================================== */
 const Slots = ["Physical", "Pantheon", "FightingStyle", "SpecialAbility"] as const;
@@ -56,9 +57,10 @@ export const SoulForge = () => {
 		Size: UDim2.fromOffset(450, 250),
 		Layout: Layout.Grid(10, UDim2.fromOffset(100, 100)),
 		Children: {
-			Physical: GamePanel({
+			Physical: GameButton({
 				Name: "PhysicalSocket",
-				//[OnEvent("Activated")]: () => openPrompt("Physical"),
+				Size: UDim2.fromOffset(100, 100),
+				OnClick: () => openPrompt("Physical"),
 			}),
 			Pantheon: GamePanel({
 				Name: "PantheonSocket",

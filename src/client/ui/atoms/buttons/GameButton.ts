@@ -49,7 +49,7 @@ export const GameButton = (props: GameButtonProps) => {
 		[OnEvent("MouseLeave")]: () => isHovered.set(false),
 		[OnEvent("Activated")]: props.OnClick,
 		[Children]: {
-			Label: props.Text ? GameText({ Text: props.Text }) : undefined,
+			Label: props.Text ? GameText({ ValueText: props.Text }) : undefined,
 			...(props.Children ?? {}),
 		},
 	});

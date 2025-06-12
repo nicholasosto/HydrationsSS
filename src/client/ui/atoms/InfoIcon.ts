@@ -1,4 +1,5 @@
 import Fusion, { New, Children, Computed } from "@rbxts/fusion";
+import { GameText } from "./text";
 
 export interface InfoIcon {
 	assetId: string;
@@ -24,23 +25,10 @@ export const InfoIcon = (props: InfoIcon) => {
 				Size: UDim2.fromScale(0.9, 0.2),
 
 				[Children]: [
-					New("TextLabel")({
-						Name: "TextLabel",
-						BackgroundTransparency: 1,
-						FontFace: new Font(
-							"rbxasset://fonts/families/Inconsolata.json",
-							Enum.FontWeight.SemiBold,
-							Enum.FontStyle.Normal,
-						),
-						Size: UDim2.fromScale(1, 1),
-						TextColor3: Color3.fromRGB(251, 255, 165),
-						TextScaled: true,
-						Text: Computed(() => tostring(props.fusionValue.get())),
-					}),
-
-					New("UICorner")({
-						Name: "UICorner",
-						CornerRadius: new UDim(0, 4),
+					GameText({
+						ValueText: Computed(() => tostring(props.fusionValue.get())).get(),
+						AnchorPoint: new Vector2(0.5, 0.5),
+						Position: UDim2.fromScale(0.5, 0.5),
 					}),
 				],
 			}),

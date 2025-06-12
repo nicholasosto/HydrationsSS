@@ -24,7 +24,7 @@ import Fusion, { New, Computed, Value } from "@rbxts/fusion";
 import { GameColors } from "../../quarks";
 
 export interface GameTextProps extends Fusion.PropertyTable<TextLabel> {
-	Text: Fusion.Value<string | number> | string | number;
+	ValueText: Fusion.Value<string | number> | string | number;
 	TextSize?: number;
 	Size?: UDim2;
 	Position?: UDim2;
@@ -33,7 +33,9 @@ export interface GameTextProps extends Fusion.PropertyTable<TextLabel> {
 }
 
 export const GameText = (props: GameTextProps) => {
-	const textState = typeIs(props.Text, "table") ? (props.Text as Fusion.Value<string | number>) : Value(props.Text);
+	const textState = typeIs(props.ValueText, "table")
+		? (props.ValueText as Fusion.Value<string | number>)
+		: Value(props.ValueText);
 
 	return New("TextLabel")({
 		Name: props.Name ?? "GameText",
