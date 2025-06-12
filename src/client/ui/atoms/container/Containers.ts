@@ -1,7 +1,6 @@
-import Fusion, { New, Children } from "@rbxts/fusion";
+import Fusion from "@rbxts/fusion";
 import { GamePanel } from "./GamePanel";
 import { Flex, Layout } from "../../quarks";
-import { Players } from "@rbxts/services";
 import { PlayerAvatar } from "../Avatar";
 
 /* ============================================== Constants ========================================= */

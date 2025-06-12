@@ -1,3 +1,26 @@
+/**
+ * @file        GamePanel.ts
+ * @module      GamePanel
+ * @layer       Client/Atom
+ * @description Core(Foundational Atom that serves as the base of any custom component that would use a Frame object).
+ * There are additional properties that can be used to customize the component, such as scrolling, hover effects, drag functionality, and more.
+ * ╭───────────────────────────────╮
+ * │  Soul Steel · Coding Guide    │
+ * │  Fusion v4 · Strict TS · ECS  │
+ * ╰───────────────────────────────╯
+ *
+ * @author       Trembus
+ * @license      MIT
+ * @since        0.2.0
+ * @lastUpdated  2025-05-29 by Luminesa – Initial creation
+ *
+ * @dependencies
+ *   @rbxts/fusion ^0.4.0
+ *
+ * @remarks
+ *   Uses them  from shared/quarks.ts.
+ */
+
 import Fusion, { New, Children, Computed, Value, OnEvent, PropertyTable } from "@rbxts/fusion";
 import { GameColors, Layout, ShadowGradient } from "../../quarks";
 
@@ -65,7 +88,7 @@ export const GamePanel = (props: GamePanelProps) => {
 		? ScrollContent(props.Children ?? {}, props.Layout)
 		: Content(props.Children ?? {}, props.Layout);
 
-	const component = New("Frame")({
+	const customComponent = New("Frame")({
 		Name: props.Name ?? "ShadowPanel",
 		AnchorPoint: props.AnchorPoint ?? new Vector2(0.5, 0.5),
 		BackgroundColor3: props.BackgroundColor3 ?? GameColors.BackgroundDefault,
@@ -101,5 +124,5 @@ export const GamePanel = (props: GamePanelProps) => {
 			Content: content,
 		},
 	});
-	return component;
+	return customComponent;
 };

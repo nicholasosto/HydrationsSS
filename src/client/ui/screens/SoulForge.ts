@@ -58,19 +58,19 @@ export const SoulForge = () => {
 		Children: {
 			Physical: GamePanel({
 				Name: "PhysicalSocket",
-				[OnEvent("Activated")]: () => openPrompt("Physical"),
+				//[OnEvent("Activated")]: () => openPrompt("Physical"),
 			}),
 			Pantheon: GamePanel({
 				Name: "PantheonSocket",
-				[OnEvent("Activated")]: () => openPrompt("Pantheon"),
+				//[OnEvent("Activated")]: () => openPrompt("Pantheon"),
 			}),
 			Fighting: GamePanel({
 				Name: "FightingStyleSocket",
-				[OnEvent("Activated")]: () => openPrompt("FightingStyle"),
+				//[OnEvent("Activated")]: () => openPrompt("FightingStyle"),
 			}),
 			Ability: GamePanel({
 				Name: "SpecialAbilitySocket",
-				[OnEvent("Activated")]: () => openPrompt("SpecialAbility"),
+				//[OnEvent("Activated")]: () => openPrompt("SpecialAbility"),
 			}),
 		},
 	});
@@ -138,7 +138,7 @@ export const SoulForge = () => {
 			Size: PanelSizes.ModalPanel(),
 			Scrolling: true,
 			Layout: Layout.Grid(4, UDim2.fromOffset(90, 90)),
-			[OnEvent("Activated")]: () => {},
+			//[OnEvent("Activated")]: () => {},
 			Children: gems,
 		});
 	}

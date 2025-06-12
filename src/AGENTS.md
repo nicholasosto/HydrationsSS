@@ -11,10 +11,15 @@ The purpose of this document is to provide a concise overview of coding conventi
 
 1. **Follow coding conventions** in this guide.
 2. Ensure folders contain barrel files for easy imports. Check existing folders and ensure barrel files are present and correctly exporting components.
+3. Use available assets from the `shared/assets` folder. If an asset is not available, create a placeholder asset and a #ASSETREQUEST comment in the code to request the asset from the art team.
+4. If you identify a core (atomic) component that is missing, create a new file in the `src/atoms` folder and follow the coding conventions outlined in this guide. add a #AGENT_ATOM comment to the top of the file to indicate it is an agent-created atom.
+5. **Testing**: All components should be testable. Use the `TestParts` screen to add example tests for new components. Ensure that tests cover the expected behavior and edge cases of the component.
+6. Create a const export for simple example components when a new component is created. This allows for easy testing and demonstration of the component's functionality.
+7. **Documentation**: Use TSDoc comments to document components, including their purpose, properties, and events. This helps maintain clarity and understanding of the codebase.
 
 ## 3 Pitfalls to Avoid
 
-1. Fusions OnEvent, OnChange follow the format:
+1. Fusions OnEvent, OnChange follow the format: (keep in mind not all events or properties will be used in every component - A framebased component may not use OnEvent("Activated") but a GUIButton based component will, for example):
 
 ```ts
     MyComponent({
@@ -55,10 +60,9 @@ The purpose of this document is to provide a concise overview of coding conventi
  *   @rbxts/fusion ^0.4.0
  *
  * @remarks
- *   Uses theme colors from shared/theme.ts.
+ *   Uses them  from shared/quarks.ts.
  */
 
 import Fusion from "@rbxts/fusion";
-import { theme } from "shared/theme";
 // …component code…
 ```

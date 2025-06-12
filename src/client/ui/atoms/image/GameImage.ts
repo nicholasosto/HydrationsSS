@@ -2,13 +2,13 @@ import Fusion from "@rbxts/fusion";
 import { GameImageSubKey } from "shared/assets/image";
 
 export interface GameImageProps extends Fusion.PropertyTable<ImageLabel> {
-	GameImage: GameImageSubKey;
+	SecondaryImage?: string;
 }
 
 export function GameImage(props: GameImageProps): ImageLabel {
 	return Fusion.New("ImageLabel")({
 		BackgroundTransparency: 1,
-		Image: `${props.GameImage}`,
+		Image: props.Image ?? "rbxassetid://121566852339881",
 		Size: new UDim2(1, 0, 1, 0),
 		Position: new UDim2(0, 0, 0, 0),
 		ZIndex: props.ZIndex ?? 1,
