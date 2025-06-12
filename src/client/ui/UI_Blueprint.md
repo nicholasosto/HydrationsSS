@@ -9,6 +9,7 @@ modified.
 - `quarks/` – styling helpers and utility modules
 - `organisms/` – composed UI widgets
 - `screens/` – top level screens
+- `screens/SoulForge.ts` – manages soul gem sockets and inventory prompts
 - `states/` – Fusion state containers
 - `hydrations/` – functions that connect data to components
 
