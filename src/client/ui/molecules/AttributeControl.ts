@@ -1,6 +1,6 @@
 /* ==================================== Attribute Control Imports ==================================== */
 import Fusion from "@rbxts/fusion";
-import { GameText, GamePanel, GameImage, GameButton } from "../atoms";
+import { GameText, GamePanel, GameImage, GameButton } from "../core";
 import { Layout, Pad } from "../quarks";
 import { AttributeKey, AttributesMeta } from "shared";
 import { PlayerState } from "../states";

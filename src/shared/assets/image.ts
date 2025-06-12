@@ -14,6 +14,10 @@
  */
 
 export const GameImages = {
+	Borders: {
+		GothicMetal: "rbxassetid://80375133768026",
+		RedThick: "rbxassetid://134322739825066",
+	},
 	Attrubutes: {
 		Strength: "rbxassetid://127745571044516",
 		Dexterity: "rbxassetid://73893872719367",

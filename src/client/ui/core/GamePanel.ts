@@ -21,8 +21,9 @@
  *   Uses them  from shared/quarks.ts.
  */
 
-import Fusion, { New, Children, Computed, Value, OnEvent, PropertyTable } from "@rbxts/fusion";
-import { GameColors, Layout, ShadowGradient } from "../../quarks";
+import Fusion, { New, Children, Computed, Value, OnEvent } from "@rbxts/fusion";
+import { GameColors, Layout, ShadowGradient } from "../quarks";
+import { GamePanelProps } from "../interfaces/CoreInterfaces";
 
 /* =============================================== Scroll Component ========================================= */
 function ScrollContent(children: Fusion.ChildrenValue, layout?: UIListLayout | UIGridLayout) {
@@ -54,18 +55,6 @@ function Content(children: Fusion.ChildrenValue, layout?: UIListLayout | UIGridL
 			...children,
 		},
 	});
-}
-
-/* =============================================== GamePanel Props ========================================= */
-export interface GamePanelProps extends PropertyTable<Frame> {
-	Scrolling?: boolean; // Optional property to enable scrolling
-	Children?: Fusion.ChildrenValue;
-	Layout?: UIListLayout | UIGridLayout; // Optional layout for scrollable children
-	HoverEffect?: boolean; // Optional hover effect
-	DragEnabled?: boolean; // Optional drag functionality
-	FlexInstance?: UIFlexItem; // Optional flex layout
-	Padding?: UIPadding; // Optional padding for the panel
-	Stroke?: UIStroke; // Optional stroke for the panel
 }
 
 /* =============================================== GamePanel Component ========================================= */
@@ -100,6 +89,7 @@ export const GamePanel = (props: GamePanelProps) => {
 		[OnEvent("MouseLeave")]: () => isHovered.set(false),
 		[Children]: {
 			Gradient: ShadowGradient(),
+			BorderImage: props.BorderImage ?? undefined,
 			Corner: New("UICorner")({}),
 			Flex: props.FlexInstance ?? undefined,
 			Dragger: New("UIDragDetector")({

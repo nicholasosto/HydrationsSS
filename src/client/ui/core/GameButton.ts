@@ -21,8 +21,8 @@
  */
 
 import Fusion, { New, Children, OnEvent, Value, Computed } from "@rbxts/fusion";
-import { GameText } from "../text";
-import { GameColors } from "../../quarks";
+import { GameText } from "../atoms/text";
+import { GameColors } from "../quarks";
 
 export interface GameButtonProps extends Fusion.PropertyTable<ImageButton> {
 	OnClick: () => void;

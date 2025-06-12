@@ -1,7 +1,7 @@
 import { Pad } from "client/ui/quarks";
 import { GamePanel } from "../container";
-import { GameText } from "../text/GameText";
-import { GameImage, GameImageProps } from "./GameImage";
+import { GameText } from "../../core/GameText";
+import { GameImage, GameImageProps } from "../../core/GameImage";
 import Fusion, { Children, Computed } from "@rbxts/fusion";
 
 export interface ValueImageProps extends GameImageProps {

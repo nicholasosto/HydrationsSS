@@ -1,6 +1,7 @@
 import { Players } from "@rbxts/services";
 import { New, Children, PropertyTable } from "@rbxts/fusion";
 import { SliceFrame } from "../quarks";
+import { BorderImage } from "../core";
 
 interface AvatarProps extends PropertyTable<ImageLabel> {
 	id: number; // User ID for the avatar
@@ -21,7 +22,7 @@ const Avatar = (props: AvatarProps) => {
 				MaxSize: new Vector2(100, 100), // Limit size to 100x100
 				MinSize: new Vector2(80, 80), // Ensure it doesn't shrink below 80x80
 			}),
-			SliceFrame: SliceFrame.Clone(),
+			SliceFrame: BorderImage.RedThick(), // Use the border image for the avatar frame
 		},
 	});
 };

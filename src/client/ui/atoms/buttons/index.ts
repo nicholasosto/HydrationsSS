@@ -1,1 +1,1 @@
-export * from "./GameButton";
+export * from "../../core/GameButton";

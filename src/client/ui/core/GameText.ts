@@ -21,7 +21,7 @@
  */
 
 import Fusion, { New, Computed, Value } from "@rbxts/fusion";
-import { GameColors } from "../../quarks";
+import { GameColors } from "../quarks";
 
 export interface GameTextProps extends Fusion.PropertyTable<TextLabel> {
 	ValueText: Fusion.Value<string | number> | string | number;

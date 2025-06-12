@@ -1,15 +1,19 @@
 import Fusion, { Children, New } from "@rbxts/fusion";
 import { PlayerGui } from "../references";
 import { GameButton } from "../atoms/buttons";
+import { GamePanel } from "../atoms";
+import { BorderImage } from "../core";
 
 const TestChildren = {
-	GameButton: GameButton({
-		Name: "TestButton",
-		Size: new UDim2(0, 100, 0, 50),
-		Position: new UDim2(0.5, -50, 0.5, -25),
-		OnClick: () => {
-			print("Test Button Clicked");
-		},
+	FramePanelSquare: GamePanel({
+		Size: UDim2.fromOffset(200, 200),
+		Position: UDim2.fromScale(0.5, 0.2),
+		BorderImage: BorderImage.GothicMetal(),
+	}),
+	FramePanelRectangle: GamePanel({
+		Size: UDim2.fromOffset(200, 100),
+		Position: UDim2.fromScale(0.5, 0.4),
+		BorderImage: BorderImage.GothicMetal(),
 	}),
 };
 

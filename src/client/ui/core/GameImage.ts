@@ -21,6 +21,7 @@
  */
 
 import Fusion, { New } from "@rbxts/fusion";
+import { GameImages } from "shared/assets/image";
 
 export interface GameImageProps extends Fusion.PropertyTable<ImageLabel> {
 	Image?: string;
@@ -36,5 +37,28 @@ export function GameImage(props: GameImageProps): ImageLabel {
 		Size: props.Size ?? UDim2.fromScale(1, 1),
 		Position: props.Position ?? UDim2.fromScale(0.5, 0.5),
 		ZIndex: props.ZIndex ?? 1,
+		ScaleType: props.ScaleType ?? Enum.ScaleType.Fit,
+		SliceCenter: props.SliceCenter ?? new Rect(0, 0, 0, 0),
+		ImageRectOffset: props.ImageRectOffset ?? new Vector2(0, 0),
+		ImageRectSize: props.ImageRectSize ?? new Vector2(0, 0),
 	});
 }
+
+export const BorderImage = {
+	GothicMetal: () =>
+		GameImage({
+			Image: GameImages.Borders.GothicMetal,
+			ScaleType: Enum.ScaleType.Slice,
+			SliceCenter: new Rect(150, 150, 360, 360),
+			ZIndex: 100,
+		}),
+	RedThick: () =>
+		GameImage({
+			Image: GameImages.Borders.RedThick,
+			ScaleType: Enum.ScaleType.Slice,
+			SliceCenter: new Rect(500, 500, 500, 500),
+			ImageRectOffset: new Vector2(30, 30),
+			ImageRectSize: new Vector2(960, 960),
+			ZIndex: 100,
+		}),
+};

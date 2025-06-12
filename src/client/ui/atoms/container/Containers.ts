@@ -1,5 +1,5 @@
 import Fusion from "@rbxts/fusion";
-import { GamePanel } from "./GamePanel";
+import { GamePanel } from "../../core/GamePanel";
 import { Flex, Layout } from "../../quarks";
 import { PlayerAvatar } from "../Avatar";
 
