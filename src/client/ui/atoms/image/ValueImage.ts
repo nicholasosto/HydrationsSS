@@ -1,6 +1,6 @@
 import { Pad } from "client/ui/quarks";
 import { GamePanel } from "../container";
-import { GameText } from "../GameText";
+import { GameText } from "../text/GameText";
 import { GameImage, GameImageProps } from "./GameImage";
 import Fusion, { Children, Computed } from "@rbxts/fusion";
 

@@ -5,6 +5,7 @@ It should be updated whenever new components are added or existing ones are
 modified.
 
 ## Structure
+
 - `atoms/` – basic, reusable primitives
 - `quarks/` – styling helpers and utility modules
 - `organisms/` – composed UI widgets
@@ -13,6 +14,7 @@ modified.
 - `hydrations/` – functions that connect data to components
 
 ## Principles
+
 1. Components are written in **PascalCase**.
 2. Frame-based components use the `Panel` component as the root element.
 3. Keep components testable with minimal side effects.
