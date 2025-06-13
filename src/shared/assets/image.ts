@@ -37,6 +37,8 @@ export const GameImages = {
 	Control: {
 		Increment: "rbxassetid://102421835119714",
 		Decrement: "rbxassetid://78091115085992",
+		Close: "rbxassetid://91437543746962",
+		TrippleArrow: "rbxassetid://136693752293641",
 	},
 	Currency: {
 		Coins: "rbxassetid://127745571044516",

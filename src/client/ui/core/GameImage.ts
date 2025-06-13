@@ -20,6 +20,7 @@
  *   @rbxts/fusion ^0.4.0
  */
 
+/* =============================================== Imports ========================================= */
 import Fusion, { New } from "@rbxts/fusion";
 import { GameImages } from "shared/assets/image";
 
@@ -28,6 +29,7 @@ export interface GameImageProps extends Fusion.PropertyTable<ImageLabel> {
 	SecondaryImage?: string;
 }
 
+/* =============================================== GameImage Component ========================================= */
 export function GameImage(props: GameImageProps): ImageLabel {
 	return New("ImageLabel")({
 		Name: props.Name ?? "GameImage",
@@ -44,6 +46,7 @@ export function GameImage(props: GameImageProps): ImageLabel {
 	});
 }
 
+/* =============================================== BorderImage Component (9-Slice) ========================================= */
 export const BorderImage = {
 	GothicMetal: () =>
 		GameImage({

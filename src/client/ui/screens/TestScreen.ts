@@ -1,10 +1,13 @@
-import Fusion, { Children, New } from "@rbxts/fusion";
+/* ================================================= Imports ========================================= */
+import { Children, New } from "@rbxts/fusion";
 import { PlayerGui } from "../references";
 import { GameButton } from "../atoms/buttons";
 import { GamePanel } from "../atoms";
-import { BorderImage } from "../core";
+import { BorderImage, GameImage } from "../core";
+import { GameImages } from "shared/assets/image";
 
-const TestChildren = {
+/* =============================================== Panel Tests ========================================= */
+const PanelTests = {
 	FramePanelSquare: GamePanel({
 		Size: UDim2.fromOffset(200, 200),
 		Position: UDim2.fromScale(0.5, 0.2),
@@ -17,6 +20,19 @@ const TestChildren = {
 	}),
 };
 
+/* =============================================== Image Children ========================================= */
+const ImageChildren = {
+	Basic: GameImage({}),
+	FrameImage: BorderImage.RedThick(),
+	FrameImage2: BorderImage.GothicMetal(),
+	TextureImage: GameImage({
+		Image: GameImages.Ability.Blood_Elemental,
+		Size: UDim2.fromOffset(100, 200),
+		Position: UDim2.fromScale(0.5, 0.6),
+	}),
+};
+
+/* =============================================== Test Screen ========================================= */
 export const TestScreen = () =>
 	New("ScreenGui")({
 		Name: "TestScreen",
@@ -25,6 +41,7 @@ export const TestScreen = () =>
 		Enabled: true,
 		Parent: PlayerGui,
 		[Children]: {
-			...TestChildren,
+			PanelTests: PanelTests,
+			ImageTests: ImageChildren,
 		},
 	});
