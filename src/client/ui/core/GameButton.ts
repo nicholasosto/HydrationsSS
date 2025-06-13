@@ -20,23 +20,32 @@
  *   @rbxts/fusion ^0.4.0
  */
 
-import Fusion, { New, Children, OnEvent, Value, Computed } from "@rbxts/fusion";
-import { GameText } from "../atoms/text";
+// /* =============================================== Imports ========================================= */
+import Fusion, { New, Children, OnEvent, Value, Computed, PropertyTable } from "@rbxts/fusion";
 import { GameColors } from "../quarks";
 
-export interface GameButtonProps extends Fusion.PropertyTable<ImageButton> {
-	OnClick: () => void;
-	Children?: Fusion.ChildrenValue;
-	Text?: string;
-	Image?: string;
+/* =============================================== GameButton Props ========================================= */
+export interface GameButtonProps extends PropertyTable<ImageButton> {
+	OnClick: () => void; // Function to call when the button is clicked
+	Children?: Fusion.ChildrenValue; // Optional children for the button
+	HoldMeter?: Fusion.Value<number>; // Optional hold meter for the button
+	CooldownMeter?: Fusion.Value<number>; // Optional cooldown meter for the button
 }
 
+/* =============================================== GameButton Component ========================================= */
 export const GameButton = (props: GameButtonProps) => {
+	// Hover state management
 	const isHovered = Value(false);
 
+	// Background color based on hover state
 	const bgColor = Computed(() => (isHovered.get() ? GameColors.ButtonBackgroundHover : GameColors.ButtonBackground));
 
-	const component = New("ImageButton")({
+	// Hold Meter
+	const holdMeter = props.HoldMeter ?? Value(0);
+	// Cooldown Meter
+	const cooldownMeter = props.CooldownMeter ?? Value(0);
+
+	const customComponent = New("ImageButton")({
 		Name: props.Name ?? "GameButton",
 		AnchorPoint: props.AnchorPoint ?? new Vector2(0.5, 0.5),
 		BackgroundColor3: bgColor,
@@ -48,10 +57,26 @@ export const GameButton = (props: GameButtonProps) => {
 		[OnEvent("MouseEnter")]: () => isHovered.set(true),
 		[OnEvent("MouseLeave")]: () => isHovered.set(false),
 		[OnEvent("Activated")]: props.OnClick,
-		[Children]: {
-			Label: props.Text ? GameText({ ValueText: props.Text }) : undefined,
-			...(props.Children ?? {}),
+		[OnEvent("MouseButton1Down")]: () => {
+			// Start hold meter
+			holdMeter.set(0);
+			task.spawn(() => {
+				while (isHovered.get() && holdMeter.get() < 100) {
+					holdMeter.set(holdMeter.get() + 1);
+					task.wait(0.5); // Adjust the speed of the hold meter
+					print(`Hold Meter: ${holdMeter.get()}`);
+				}
+			});
 		},
+		[OnEvent("MouseButton1Up")]: () => {
+			if (isHovered.get()) {
+				// Reset hold meter on release
+				print("Hold Meter Reset");
+				print(`Cooldown Meter: ${cooldownMeter.get()}`);
+				holdMeter.set(0);
+			}
+		},
+		[Children]: {},
 	});
-	return component;
+	return customComponent;
 };

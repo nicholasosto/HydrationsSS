@@ -25,9 +25,3 @@ export interface GameImageProps extends PropertyTable<ImageLabel> {
 	ValueText?: Fusion.Value<string | number>; // Optional value text for the image
 }
 
-/* =============================================== GameButton Props ========================================= */
-export interface GameButtonProps extends PropertyTable<ImageButton> {
-	OnClick: () => void; // Function to call when the button is clicked
-	Children?: Fusion.ChildrenValue; // Optional children for the button
-	HoverImage?: string; // Optional hover image for the button
-}

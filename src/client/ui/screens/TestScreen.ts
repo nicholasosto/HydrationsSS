@@ -5,6 +5,8 @@ import { GameButton } from "../atoms/buttons";
 import { GamePanel } from "../atoms";
 import { BorderImage, GameImage } from "../core";
 import { GameImages } from "shared/assets/image";
+import { Meter } from "../molecules/Meter";
+import { createMeterState, MeterStates } from "../types/MeterState";
 
 /* =============================================== Panel Tests ========================================= */
 const PanelTests = {
@@ -32,6 +34,21 @@ const ImageChildren = {
 	}),
 };
 
+/* =============================================== Button Tests ========================================= */
+const ButtonTests = {
+	BasicButton: GameButton({
+		Name: "BasicButton",
+		Size: UDim2.fromOffset(100, 50),
+		Position: UDim2.fromScale(0.5, 0.8),
+		OnClick: () => print("Basic Button Clicked!"),
+	}),
+};
+
+/* =============================================== Meter Tests ========================================= */
+const MeterTests = {
+	BasicMeter: Meter({ MeterState: MeterStates.TestHealth() }),
+};
+
 /* =============================================== Test Screen ========================================= */
 export const TestScreen = () =>
 	New("ScreenGui")({
@@ -41,7 +58,9 @@ export const TestScreen = () =>
 		Enabled: true,
 		Parent: PlayerGui,
 		[Children]: {
-			PanelTests: PanelTests,
-			ImageTests: ImageChildren,
+			//PanelTests: PanelTests,
+			//ImageTests: ImageChildren,
+			ButtonTests: ButtonTests,
+			MeterTests: MeterTests,
 		},
 	});
