@@ -1,5 +1,5 @@
 import Fusion, { PropertyTable } from "@rbxts/fusion";
-import { MeterState } from "../types/MeterState";
+import { MeterState } from "../states/MeterState";
 
 /* =============================================== GamePanel Props ========================================= */
 export interface GamePanelProps extends PropertyTable<Frame> {
@@ -24,4 +24,3 @@ export interface GameImageProps extends PropertyTable<ImageLabel> {
 	Ratio?: number; // Optional aspect ratio for the image
 	ValueText?: Fusion.Value<string | number>; // Optional value text for the image
 }
-

@@ -1,6 +1,5 @@
 import Fusion from "@rbxts/fusion";
 
-
 export const enum MeterType {
 	Bar = "Bar",
 	Radial = "Radial",

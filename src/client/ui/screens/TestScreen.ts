@@ -6,7 +6,7 @@ import { GamePanel } from "../atoms";
 import { BorderImage, GameImage } from "../core";
 import { GameImages } from "shared/assets/image";
 import { Meter } from "../molecules/Meter";
-import { createMeterState, MeterStates } from "../types/MeterState";
+//import { createMeterState, MeterStates } from "../states/MeterState";
 
 /* =============================================== Panel Tests ========================================= */
 const PanelTests = {
@@ -46,7 +46,7 @@ const ButtonTests = {
 
 /* =============================================== Meter Tests ========================================= */
 const MeterTests = {
-	BasicMeter: Meter({ MeterState: MeterStates.TestHealth() }),
+	//BasicMeter: Meter({ MeterState: MeterStates.TestHealth() }),
 };
 
 /* =============================================== Test Screen ========================================= */
@@ -61,6 +61,6 @@ export const TestScreen = () =>
 			//PanelTests: PanelTests,
 			//ImageTests: ImageChildren,
 			ButtonTests: ButtonTests,
-			MeterTests: MeterTests,
+			//MeterTests: MeterTests,
 		},
 	});

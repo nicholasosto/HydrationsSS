@@ -28,12 +28,12 @@ export const createMeterState = (id: string, label: string, currentValue: number
 	return meterState;
 };
 
-export const MeterStates = {
-	TestHealth:() => createMeterState("TestHealth", "Health", 70, 100),
-	TestMana: createMeterState("TestMana", "Mana", 50, 100),
-	TestStamina: createMeterState("TestStamina", "Stamina", 30, 100),
-	TestExperience: createMeterState("TestExperience", "Experience", 200, 1000),
-	TestEnergy: createMeterState("TestEnergy", "Energy", 80, 100),
-	TestHunger: createMeterState("TestHunger", "Hunger", 40, 100),
-	TestThirst: createMeterState("TestThirst", "Thirst", 60, 100),
-};
+// export const MeterStates = {
+// 	TestHealth:() => createMeterState("TestHealth", "Health", 70, 100),
+// 	TestMana: createMeterState("TestMana", "Mana", 50, 100),
+// 	TestStamina: createMeterState("TestStamina", "Stamina", 30, 100),
+// 	TestExperience: createMeterState("TestExperience", "Experience", 200, 1000),
+// 	TestEnergy: createMeterState("TestEnergy", "Energy", 80, 100),
+// 	TestHunger: createMeterState("TestHunger", "Hunger", 40, 100),
+// 	TestThirst: createMeterState("TestThirst", "Thirst", 60, 100),
+// };

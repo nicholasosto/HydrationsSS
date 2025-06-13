@@ -1,5 +1,5 @@
 import Fusion, { Computed, Value } from "@rbxts/fusion";
-import { MeterState } from "../types/MeterState";
+import { MeterState } from "../states/MeterState";
 import { GameTextProps } from "../interfaces";
 import { GamePanel } from "../atoms/container";
 import { GameImage, GameText } from "../core";
