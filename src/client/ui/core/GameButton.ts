@@ -21,62 +21,71 @@
  */
 
 // /* =============================================== Imports ========================================= */
-import Fusion, { New, Children, OnEvent, Value, Computed, PropertyTable } from "@rbxts/fusion";
+import Fusion, { New, Children, OnEvent, Value, Computed, PropertyTable, OnChange } from "@rbxts/fusion";
+import { RunService } from "@rbxts/services";
 import { GameColors } from "../quarks";
+import { GamePanel } from "./GamePanel";
+import { BorderImage, GameImage } from "./GameImage";
+import { GamePanelProps } from "./CoreInterfaces";
+import { GameText } from "./GameText";
 
 /* =============================================== GameButton Props ========================================= */
-export interface GameButtonProps extends PropertyTable<ImageButton> {
-	OnClick: () => void; // Function to call when the button is clicked
-	Children?: Fusion.ChildrenValue; // Optional children for the button
-	HoldMeter?: Fusion.Value<number>; // Optional hold meter for the button
-	CooldownMeter?: Fusion.Value<number>; // Optional cooldown meter for the button
+export interface GameButtonProps extends GamePanelProps {
+	OnClick?: () => void; // Function to call when the button is clicked
+	ButtonImage?: string; // Image to display on the button
+	ButtonText?: string; // Text to display on the button
 }
+
+/* =============================================== Default Props ========================================= */
+const DefaultProps = {
+	Size: UDim2.fromOffset(50, 50), // Default size of the button
+	BackgroundTransparency: 0.1,
+	BorderImage: BorderImage.GothicMetal(),
+};
 
 /* =============================================== GameButton Component ========================================= */
 export const GameButton = (props: GameButtonProps) => {
 	// Hover state management
 	const isHovered = Value(false);
+	const isPressed = Value(false);
+	// Computed property for hover state
+	const isActive = Computed(() => isHovered.get() || isPressed.get());
 
 	// Background color based on hover state
 	const bgColor = Computed(() => (isHovered.get() ? GameColors.ButtonBackgroundHover : GameColors.ButtonBackground));
 
-	// Hold Meter
-	const holdMeter = props.HoldMeter ?? Value(0);
-	// Cooldown Meter
-	const cooldownMeter = props.CooldownMeter ?? Value(0);
+	// Props setup
+	const buttonImage = GameImage({
+		Image: props.ButtonImage ?? undefined,
+	});
 
-	const customComponent = New("ImageButton")({
-		Name: props.Name ?? "GameButton",
+	const buttonText = GameText({ ValueText: Value(props.ButtonText ?? "") });
+
+	props.Name = props.Name ?? "GameButton";
+
+	const customComponent = GamePanel({
+		Name: props.Name,
+		BorderImage: props.BorderImage ?? BorderImage.GothicMetal(),
 		AnchorPoint: props.AnchorPoint ?? new Vector2(0.5, 0.5),
 		BackgroundColor3: bgColor,
-		BackgroundTransparency: props.BackgroundTransparency ?? 0,
-		Image: props.Image,
-		Position: props.Position ?? UDim2.fromScale(0.5, 0.5),
+		BackgroundTransparency: props.BackgroundTransparency ?? 0.6,
 		Size: props.Size ?? UDim2.fromOffset(100, 40),
 		LayoutOrder: props.LayoutOrder ?? 0,
 		[OnEvent("MouseEnter")]: () => isHovered.set(true),
 		[OnEvent("MouseLeave")]: () => isHovered.set(false),
-		[OnEvent("Activated")]: props.OnClick,
-		[OnEvent("MouseButton1Down")]: () => {
-			// Start hold meter
-			holdMeter.set(0);
-			task.spawn(() => {
-				while (isHovered.get() && holdMeter.get() < 100) {
-					holdMeter.set(holdMeter.get() + 1);
-					task.wait(0.5); // Adjust the speed of the hold meter
-					print(`Hold Meter: ${holdMeter.get()}`);
-				}
-			});
+		Children: {
+			Button: New("ImageButton")({
+				Name: "Button",
+				BackgroundTransparency: 1,
+				Size: UDim2.fromScale(1, 1),
+				[OnEvent("Activated")]: () => {
+					props.OnClick?.();
+					print(`Button ${props.Name} clicked!`);
+				},
+			}),
+			Text: buttonText,
+			Image: buttonImage,
 		},
-		[OnEvent("MouseButton1Up")]: () => {
-			if (isHovered.get()) {
-				// Reset hold meter on release
-				print("Hold Meter Reset");
-				print(`Cooldown Meter: ${cooldownMeter.get()}`);
-				holdMeter.set(0);
-			}
-		},
-		[Children]: {},
 	});
 	return customComponent;
 };

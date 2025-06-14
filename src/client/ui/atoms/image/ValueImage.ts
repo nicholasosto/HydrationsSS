@@ -1,8 +1,7 @@
 import { Pad } from "client/ui/quarks";
-import { GamePanel } from "../container";
-import { GameText } from "../../core/GameText";
-import { GameImage, GameImageProps } from "../../core/GameImage";
-import Fusion, { Children, Computed } from "@rbxts/fusion";
+
+import { GameImage, GameImageProps, GamePanel, GameText } from "../../core/";
+import Fusion, { Children, Computed, Value } from "@rbxts/fusion";
 
 export interface ValueImageProps extends GameImageProps {
 	Value: Fusion.Value<number | string>;
@@ -16,7 +15,7 @@ export const ValueImage = (props: ValueImageProps): Frame => {
 		Padding: Pad.All(new UDim(0, 4)),
 		Children: {
 			Image: GameImage({ Image: props.Image, Size: UDim2.fromScale(1, 1) }),
-			Label: GameText({ ValueText: textString.get() }),
+			Label: GameText({ ValueText: Value("DSDs") }),
 		},
 	});
 

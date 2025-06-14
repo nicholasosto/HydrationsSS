@@ -1,1 +1,1 @@
-export * from "./CoreInterfaces";
+export * from "../core/CoreInterfaces";

@@ -1,5 +1,5 @@
 /* ==================================== Attribute Control Imports ==================================== */
-import Fusion from "@rbxts/fusion";
+import Fusion, { Value } from "@rbxts/fusion";
 import { GameText, GamePanel, GameImage, GameButton } from "../core";
 import { Layout, Pad } from "../quarks";
 import { AttributeKey, AttributesMeta } from "shared";
@@ -31,19 +31,19 @@ export const AttributeControl = (props: AttributeControlProps) => {
 
 	// Attribute Name
 	const attributeName = GameText({
-		ValueText: displayName,
+		ValueText: Value(displayName),
 		TextSize: 14,
 		TextColor3: Color3.fromRGB(255, 255, 255),
 	});
 
 	// Attribute Value
 	const attributeValue = GameText({
-		ValueText: tostring(attributeState.get()),
+		ValueText: attributeState,
 	});
 
 	// Increment Button
 	const incrementButton = GameButton({
-		Image: GameImages["TextureImage"].BoneDoily,
+		ButtonImage: GameImages["TextureImage"].BoneDoily,
 		OnClick: () => {
 			ModifyPlayerAttribute(props.AttributeKey, 1);
 			print(`Incremented ${props.AttributeKey} by 1`);
@@ -52,7 +52,7 @@ export const AttributeControl = (props: AttributeControlProps) => {
 
 	// Decrement Button
 	const decrementButton = GameButton({
-		Image: GameImages["TextureImage"].BoneDoily,
+		ButtonImage: GameImages["TextureImage"].BoneDoily,
 		OnClick: () => {
 			ModifyPlayerAttribute(props.AttributeKey, -1);
 			print(`decremented ${props.AttributeKey} by -1`);

@@ -19,9 +19,8 @@
 
 import Fusion, { Children, Hydrate, New, OnEvent, Value, Computed } from "@rbxts/fusion";
 import { SoulForgeScreen } from "../references";
-import { GamePanel } from "../atoms/container";
 import { Layout, PanelSizes } from "../quarks";
-import { GameButton } from "../atoms";
+import { GameButton, GamePanel } from "../core";
 
 /* ============================================== Types ============================================== */
 const Slots = ["Physical", "Pantheon", "FightingStyle", "SpecialAbility"] as const;

@@ -1,20 +1,15 @@
 import Fusion, { New } from "@rbxts/fusion";
 
-export const Stroke = {
-	Default: () =>
-		New("UIStroke")({
-			Name: "UIStroke",
-			Color: new Color3(1, 1, 1),
-			Thickness: 1,
-			LineJoinMode: Enum.LineJoinMode.Bevel,
-			Transparency: 0.3,
-		}),
-	Hover: () =>
-		New("UIStroke")({
-			Name: "UIStroke",
-			Color: new Color3(1, 1, 1),
-			Thickness: 1,
-			LineJoinMode: Enum.LineJoinMode.Bevel,
-			Transparency: 0.2,
-		}),
+export interface StrokeProps {
+	Thickness?: Fusion.Computed<number>;
+	Color?: Fusion.Computed<Color3>;
+}
+
+export const Stroke = (props: StrokeProps) => {
+	return New("UIStroke")({
+		Name: "Stroke",
+		Thickness: props.Thickness ?? 1,
+		Color: props.Color ?? new Color3(1, 1, 1),
+		ApplyStrokeMode: Enum.ApplyStrokeMode.Border,
+	});
 };

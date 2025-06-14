@@ -9,7 +9,7 @@ export const GameColors = {
 	TextHover: new Color3(1, 1, 1),
 	TextDisabled: new Color3(0.5, 0.5, 0.5),
 	ButtonBackground: new Color3(0.2, 0.2, 0.2),
-	ButtonBackgroundHover: new Color3(0.3, 0.3, 0.3),
+	ButtonBackgroundHover: new Color3(0.79, 0.1, 0.1),
 	ButtonText: new Color3(1, 1, 1),
 	ButtonTextHover: new Color3(1, 1, 1),
 	ScrollBar: new Color3(0.3, 0.3, 0.3),

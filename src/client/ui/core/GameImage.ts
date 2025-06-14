@@ -23,11 +23,7 @@
 /* =============================================== Imports ========================================= */
 import Fusion, { New } from "@rbxts/fusion";
 import { GameImages } from "shared/assets/image";
-
-export interface GameImageProps extends Fusion.PropertyTable<ImageLabel> {
-	Image?: string;
-	SecondaryImage?: string;
-}
+import { GameImageProps } from "./CoreInterfaces";
 
 /* =============================================== GameImage Component ========================================= */
 export function GameImage(props: GameImageProps): ImageLabel {

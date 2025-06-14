@@ -1,1 +1,1 @@
-export * from "../../core/GameButton";
+export * from "../container/CollapsiblePanel";

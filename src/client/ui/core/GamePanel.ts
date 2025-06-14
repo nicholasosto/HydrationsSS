@@ -22,8 +22,9 @@
  */
 
 import Fusion, { New, Children, Computed, Value, OnEvent } from "@rbxts/fusion";
-import { GameColors, Layout, ShadowGradient } from "../quarks";
-import { GamePanelProps } from "../interfaces/CoreInterfaces";
+import { GameColors, Layout, ShadowGradient, Stroke } from "../quarks";
+import { GamePanelProps } from "./CoreInterfaces";
+import { ThemeState } from "../states/ThemeState";
 
 /* =============================================== Scroll Component ========================================= */
 function ScrollContent(children: Fusion.ChildrenValue, layout?: UIListLayout | UIGridLayout) {
@@ -59,10 +60,11 @@ function Content(children: Fusion.ChildrenValue, layout?: UIListLayout | UIGridL
 
 /* =============================================== GamePanel Component ========================================= */
 export const GamePanel = (props: GamePanelProps) => {
+	/* ----- State Setup ----- */
 	// Hover State
 	const isHovered = Value(false);
 
-	// Stroke Color and Thickness
+	// UI Stroke Hover Effect
 	const strokeColor = Computed(() => {
 		return isHovered.get() && props.HoverEffect ? GameColors.StrokeHover : GameColors.StrokeDefault;
 	});
@@ -77,40 +79,49 @@ export const GamePanel = (props: GamePanelProps) => {
 		? ScrollContent(props.Children ?? {}, props.Layout)
 		: Content(props.Children ?? {}, props.Layout);
 
+	/* ----- Component Defaults Setup ----- */
+	/* -- Frame Properties -- */
+	props.Name = props.Name ?? "GamePanel";
+	props.AnchorPoint = props.AnchorPoint ?? new Vector2(0.5, 0.5);
+	props.BackgroundColor3 = props.BackgroundColor3 ?? ThemeState.BackgroundColor3.get();
+	props.BackgroundTransparency = props.BackgroundTransparency ?? 0.2;
+	props.Position = props.Position ?? UDim2.fromScale(0.5, 0.5);
+	props.Size = props.Size ?? UDim2.fromScale(0.5, 0.5);
+	props.LayoutOrder = props.LayoutOrder ?? 1;
+
+	/* -- Special Properties -- */
+	props.HoverEffect = props.HoverEffect ?? true; // Enable hover effect by default
+	props.DragEnabled = props.DragEnabled ?? false; // Disable drag by default
+	props.BorderImage = props.BorderImage ?? undefined; // No border image by default
+	props.FlexInstance = props.FlexInstance ?? undefined; // No flex instance by default
+	props.Padding = props.Padding ?? undefined; // No padding by default
+	props.Stroke = props.Stroke ?? Stroke({ Thickness: strokeThickness, Color: strokeColor }); // No stroke by default
+	props.OnDragStart = props.OnDragStart ?? (() => print("Drag started"));
+	props.OnDragEnd = props.OnDragEnd ?? (() => print("Drag ended"));
+
+	/* ----- Template ----- */
 	const customComponent = New("Frame")({
-		Name: props.Name ?? "ShadowPanel",
-		AnchorPoint: props.AnchorPoint ?? new Vector2(0.5, 0.5),
-		BackgroundColor3: props.BackgroundColor3 ?? GameColors.BackgroundDefault,
-		BackgroundTransparency: props.BackgroundTransparency ?? 0.2,
-		Position: props.Position ?? UDim2.fromScale(0.5, 0.5),
-		Size: props.Size ?? UDim2.fromScale(0.5, 0.5),
-		LayoutOrder: props.LayoutOrder ?? 1,
+		Name: props.Name,
+		AnchorPoint: props.AnchorPoint,
+		BackgroundColor3: props.BackgroundColor3,
+		BackgroundTransparency: props.BackgroundTransparency,
+		Position: props.Position,
+		Size: props.Size,
+		LayoutOrder: props.LayoutOrder,
 		[OnEvent("MouseEnter")]: () => isHovered.set(true),
 		[OnEvent("MouseLeave")]: () => isHovered.set(false),
 		[Children]: {
-			Gradient: ShadowGradient(),
-			BorderImage: props.BorderImage ?? undefined,
+			Gradient: props.Gradient,
+			BorderImage: props.BorderImage,
 			Corner: New("UICorner")({}),
-			Flex: props.FlexInstance ?? undefined,
+			Flex: props.FlexInstance,
 			Dragger: New("UIDragDetector")({
-				Enabled: props.DragEnabled ?? false,
+				Enabled: props.DragEnabled,
+				[OnEvent("DragStart")]: props.OnDragStart,
+				[OnEvent("DragEnd")]: props.OnDragEnd,
 			}),
-			Padding:
-				props.Padding ??
-				New("UIPadding")({
-					PaddingTop: new UDim(0, 2),
-					PaddingBottom: new UDim(0, 2),
-					PaddingLeft: new UDim(0, 2),
-					PaddingRight: new UDim(0, 2),
-				}),
-			Stroke:
-				props.Stroke ??
-				New("UIStroke")({
-					Name: "UIStroke",
-					Color: strokeColor,
-					Thickness: strokeThickness,
-					LineJoinMode: Enum.LineJoinMode.Bevel,
-				}),
+			Padding: props.Padding,
+			Stroke: props.Stroke,
 			Content: content,
 		},
 	});

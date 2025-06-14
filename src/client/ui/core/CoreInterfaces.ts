@@ -11,12 +11,15 @@ export interface GamePanelProps extends PropertyTable<Frame> {
 	Scrolling?: boolean; // Optional property to enable scrolling
 	Layout?: UIListLayout | UIGridLayout; // Optional layout for scrollable children
 	Padding?: UIPadding; // Optional padding for the panel
+	Gradient?: UIGradient; // Optional gradient for the panel
 	Stroke?: UIStroke; // Optional stroke for the panel
+	OnDragStart?: () => void; // Optional callback for drag begin
+	OnDragEnd?: () => void; // Optional callback for drag end
 }
 
 /* =============================================== GameText Props ========================================= */
 export interface GameTextProps extends PropertyTable<TextLabel> {
-	ValueText: Fusion.Value<string | number>;
+	ValueText?: Fusion.Value<string | number>;
 }
 
 /* =============================================== GameImage Props ========================================= */

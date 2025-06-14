@@ -6,7 +6,7 @@
     "build": "rbxtsc",
     "watch": "rbxtsc -w",
     "sync": "rojo serve",
-    "test": "rbx-test tests",
+    "test": "rbxtsc && rojo build test.project.json -o tests.rbxl && lemur tests.rbxl TestEZ",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix"
   },
@@ -16,7 +16,8 @@
   "description": "",
   "devDependencies": {
     "@rbxts/compiler-types": "^3.0.0-types.0",
-    "@rbxts/types": "^1.0.857",
+    "@rbxts/testez": "^0.4.2-ts.0",
+    "@rbxts/types": "^1.0.858",
     "@typescript-eslint/eslint-plugin": "^8.34.0",
     "@typescript-eslint/parser": "^8.34.0",
     "eslint": "^8.57.1",

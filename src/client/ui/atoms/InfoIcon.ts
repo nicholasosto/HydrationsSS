@@ -26,7 +26,7 @@ export const InfoIcon = (props: InfoIcon) => {
 
 				[Children]: [
 					GameText({
-						ValueText: Computed(() => tostring(props.fusionValue.get())).get(),
+						ValueText: props.fusionValue,
 						AnchorPoint: new Vector2(0.5, 0.5),
 						Position: UDim2.fromScale(0.5, 0.5),
 					}),

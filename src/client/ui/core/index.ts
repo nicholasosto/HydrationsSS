@@ -20,6 +20,7 @@
  *   @rbxts/fusion ^0.4.0
  */
 
+export * from "./CoreInterfaces";
 export * from "./GameButton"; // Clickable button atom built on `ImageButton`.
 export * from "./GameImage"; // Lightweight wrapper around `ImageLabel`.
 export * from "./GamePanel"; // Foundational Atom that serves as the base of any custom component that would use a Frame object.
