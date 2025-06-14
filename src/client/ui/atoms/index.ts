@@ -4,4 +4,4 @@ export * from "./image";
 export * from "./text";
 export * from "./Avatar";
 export * from "../core/GameText";
-export * from "./InfoIcon";
+export * from "./CInfoIcon";
