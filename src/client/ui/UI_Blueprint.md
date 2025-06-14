@@ -20,3 +20,8 @@ modified.
 2. Frame-based components use the `Panel` component as the root element.
 3. Keep components testable with minimal side effects.
 
+
+## Molecules
+- `CooldownBar` – ability cooldown progress bar.
+- `DialogueBox` – simple dialogue display with speaker.
+- `ItemSlot` – inventory slot with icon and count.
