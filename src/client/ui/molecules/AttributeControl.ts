@@ -1,6 +1,28 @@
-/* ==================================== Attribute Control Imports ==================================== */
+/// <reference types="@rbxts/types" />
+
+/**
+ * @file        AttributeControl.ts
+ * @module      AttributeControl
+ * @layer       Client/Molecule
+ * @description UI element for modifying player attributes.
+ *
+ * ╭───────────────────────────────╮
+ * │  Soul Steel · Coding Guide    │
+ * │  Fusion v4 · Strict TS · ECS  │
+ * ╰───────────────────────────────╯
+ *
+ * @author       Trembus
+ * @license      MIT
+ * @since        0.2.0
+ * @lastUpdated  2025-06-15 by Trembus – Added header
+ *
+ * @dependencies
+ *   @rbxts/fusion ^0.4.0
+ */
+
+/* ==================================== Attribute Control Imports ====================== */
 import Fusion, { Value } from "@rbxts/fusion";
-import { GameText, GamePanel, GameImage, GameButton } from "../core";
+import { GameText, GamePanel, GameImage, GameButton, InfoLabel } from "../core";
 import { Layout, Pad } from "../quarks";
 import { AttributeKey, AttributesMeta } from "shared";
 import { PlayerState } from "../states";
@@ -29,17 +51,12 @@ export const AttributeControl = (props: AttributeControlProps) => {
 		Image: iconId,
 	});
 
-	// Attribute Name
-	const attributeName = GameText({
-		ValueText: Value(displayName),
-		TextSize: 14,
-		TextColor3: Color3.fromRGB(255, 255, 255),
-	});
-
-	// Attribute Value
-	const attributeValue = GameText({
-		ValueText: attributeState,
-	});
+        // Attribute Label and Value
+        const attributeLabel = InfoLabel({
+                Label: Value(displayName),
+                Value: attributeState,
+                Variant: "recessed",
+        });
 
 	// Increment Button
 	const incrementButton = GameButton({
@@ -66,13 +83,12 @@ export const AttributeControl = (props: AttributeControlProps) => {
 		BorderSizePixel: 0,
 		Layout: Layout.HorizontalSet(),
 		Padding: Pad.All(new UDim(0, 3)),
-		Children: {
-			Icon: attributeIcon,
-			DisplayName: attributeName,
-			Value: attributeValue,
-			IncrementButton: incrementButton,
-			DecrementButton: decrementButton,
-		},
+                Children: {
+                        Icon: attributeIcon,
+                        Label: attributeLabel,
+                        IncrementButton: incrementButton,
+                        DecrementButton: decrementButton,
+                },
 	});
 
 	// Retrun Custom Component

@@ -1,3 +1,25 @@
+/// <reference types="@rbxts/types" />
+
+/**
+ * @file        Meter.ts
+ * @module      Meter
+ * @layer       Client/Molecule
+ * @description Progress meter with label and optional frame image.
+ *
+ * ╭───────────────────────────────╮
+ * │  Soul Steel · Coding Guide    │
+ * │  Fusion v4 · Strict TS · ECS  │
+ * ╰───────────────────────────────╯
+ *
+ * @author       Trembus
+ * @license      MIT
+ * @since        0.2.0
+ * @lastUpdated  2025-06-15 by Trembus – Added header
+ *
+ * @dependencies
+ *   @rbxts/fusion ^0.4.0
+ */
+
 import Fusion, { Computed, Value } from "@rbxts/fusion";
 import { MeterState } from "../states/MeterState";
 import { GameImage, GameText, GamePanel } from "../core";
