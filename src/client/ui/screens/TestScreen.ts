@@ -6,6 +6,7 @@ import { GamePanel } from "../atoms";
 import { BorderImage, GameImage } from "../core";
 import { GameImages } from "shared/assets/image";
 import { Meter } from "../molecules/Meter";
+import { SapwnPoolButton } from "../atoms/buttons/SapwnPool";
 //import { createMeterState, MeterStates } from "../states/MeterState";
 
 /* =============================================== Panel Tests ========================================= */
@@ -42,6 +43,7 @@ const ButtonTests = {
 		Position: UDim2.fromScale(0.5, 0.8),
 		OnClick: () => print("Basic Button Clicked!"),
 	}),
+	SpawnPool: SapwnPoolButton(),
 };
 
 /* =============================================== Meter Tests ========================================= */

@@ -10,6 +10,7 @@
 			"$className": "ServerScriptService",
 			"TS": {
 				"$path": "out/server"
+				
 			}
 		},
 		"ReplicatedStorage": {
