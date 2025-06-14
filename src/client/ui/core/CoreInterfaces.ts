@@ -19,8 +19,19 @@ export interface GamePanelProps extends PropertyTable<Frame> {
 
 /* =============================================== GameText Props ========================================= */
 export interface GameTextProps extends PropertyTable<TextLabel> {
-	ValueText?: Fusion.Value<string | number>;
+        ValueText?: Fusion.Value<string | number>;
+        HoverText?: string | Fusion.Value<string>;
+        Variant?: "flat" | "recessed" | "extruded";
 }
+
+export interface InfoLabelProps extends GamePanelProps {
+        Label: string | Fusion.Value<string>;
+        Value: Fusion.Value<string | number>;
+        HoverText?: string | Fusion.Value<string>;
+        Variant?: "flat" | "recessed" | "extruded";
+}
+
+export interface CounterLabelProps extends InfoLabelProps {}
 
 /* =============================================== GameImage Props ========================================= */
 export interface GameImageProps extends PropertyTable<ImageLabel> {
