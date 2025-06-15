@@ -1,10 +1,11 @@
 import { SplashTesterType } from "../types";
 import { PlayerGui } from "../references";
-import Fusion, { Hydrate, Value } from "@rbxts/fusion";
+import Fusion, { Children, Hydrate, Value } from "@rbxts/fusion";
 import { BorderImage, GameButton, GameImage, GamePanel, GameText } from "../core";
 import { CreateTestElement } from "../_helpers/testHelpers";
 import { GameImages } from "shared/assets/image";
 import { Layout } from "../quarks";
+import { CollapsiblePanel } from "../atoms";
 const splashTester = PlayerGui.FindFirstChild("SplashTester") as SplashTesterType | undefined;
 
 /* ===================================================== GameText ===================================================== */
@@ -62,30 +63,31 @@ export const SplashTester = () => {
 		warn("SplashTester not found in PlayerGui. Please ensure it exists.");
 		return undefined; // SplashTester not found
 	}
-	const TextContainer = splashTester.ScreenBackground.GameTextContainer.Content;
-	const ImageContainer = splashTester.ScreenBackground.GameImageContainer.Content;
-	const ButtonContainer = splashTester.ScreenBackground.GameButtonContainer.Content;
-	const PanelContainer = splashTester.ScreenBackground.GamePanelContainer.Content;
+	const ContainerFrame = splashTester.ScreenBackground;
+	const TextContainer = ContainerFrame.GameTextContainer.Content;
+	const ImageContainer = ContainerFrame.GameImageContainer.Content;
+	const ButtonContainer = ContainerFrame.GameButtonContainer.Content;
+	const PanelContainer = ContainerFrame.GamePanelContainer.Content;
 
-	// DragPanel
-	// const DragPanel = GamePanel({
-	// 	Size: UDim2.fromOffset(300, 300),
-	// 	Position: UDim2.fromScale(0.5, 0.5),
-	// 	DragEnabled: true,
-	// 	ZIndex: 10,
-	// 	OnDragStart: () => print("Drag started!"),
-	// 	OnDragEnd: () => print("Drag ended!"),
-	// });
+	// Screen
+	Hydrate(splashTester)({
+		[Children]: {
+			Collapse: CollapsiblePanel({
+				title: "Game UI Components",
+				defaultOpen: true,
+				onToggle: (open) => {
+					print(`CollapsiblePanel is now ${open ? "open" : "closed"}`);
+				},
+			}),
+		},
+	});
 
-	// const DragTarget = GamePanel({
-	// 	Size: UDim2.fromOffset(300, 300),
-	// 	Position: UDim2.fromScale(0.5, 0.5),
-	// 	BackgroundColor3: new Color3(0.2, 0.2, 0.2),
-	// 	BackgroundTransparency: 0.5,
-	// 	BorderImage: BorderImage.GothicMetal(),
-	// });
-
-	// DragPanel.Parent = splashTester.ScreenBackground;
+	// ContainerFrame
+	Hydrate(ContainerFrame)({
+		[Children]: {
+			BGChildren: [],
+		},
+	});
 
 	// TextContainer
 	Hydrate(TextContainer)({

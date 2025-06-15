@@ -51,12 +51,12 @@ export const AttributeControl = (props: AttributeControlProps) => {
 		Image: iconId,
 	});
 
-        // Attribute Label and Value
-        const attributeLabel = InfoLabel({
-                Label: Value(displayName),
-                Value: attributeState,
-                Variant: "recessed",
-        });
+	// Attribute Label and Value
+	const attributeLabel = InfoLabel({
+		Label: Value(displayName),
+		Value: attributeState,
+		Variant: "recessed",
+	});
 
 	// Increment Button
 	const incrementButton = GameButton({
@@ -83,12 +83,12 @@ export const AttributeControl = (props: AttributeControlProps) => {
 		BorderSizePixel: 0,
 		Layout: Layout.HorizontalSet(),
 		Padding: Pad.All(new UDim(0, 3)),
-                Children: {
-                        Icon: attributeIcon,
-                        Label: attributeLabel,
-                        IncrementButton: incrementButton,
-                        DecrementButton: decrementButton,
-                },
+		Children: {
+			Icon: attributeIcon,
+			Label: attributeLabel,
+			IncrementButton: incrementButton,
+			DecrementButton: decrementButton,
+		},
 	});
 
 	// Retrun Custom Component
