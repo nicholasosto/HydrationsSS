@@ -1,5 +1,5 @@
 import { AttributeKey, AttributesMeta } from "shared";
-import { PlayerState } from "../states";
+import { PlayerState } from "../states/PlayerState";
 
 /* ==================================== Button Handlers ================================================= */
 // Increment Attribute Handler

@@ -5,7 +5,8 @@ import { BorderImage, GameButton, GameImage, GamePanel, GameText } from "../core
 import { CreateTestElement } from "../_helpers/testHelpers";
 import { GameImages } from "shared/assets/image";
 import { Layout } from "../quarks";
-import { CollapsiblePanel } from "../atoms";
+import { CInfoIcon, CollapsiblePanel } from "../atoms";
+import { ItemSlot } from "../molecules";
 const splashTester = PlayerGui.FindFirstChild("SplashTester") as SplashTesterType | undefined;
 
 /* ===================================================== GameText ===================================================== */
@@ -72,12 +73,13 @@ export const SplashTester = () => {
 	// Screen
 	Hydrate(splashTester)({
 		[Children]: {
-			Collapse: CollapsiblePanel({
-				title: "Game UI Components",
-				defaultOpen: true,
-				onToggle: (open) => {
-					print(`CollapsiblePanel is now ${open ? "open" : "closed"}`);
-				},
+			// InfoIcon: CInfoIcon({
+			// 	Image: GameImages.Control.TrippleArrow,
+			// 	Value: Value("This is a test info icon!"),
+			// }),
+			ItemSlot: ItemSlot({
+				Icon: GameImages.Control.TrippleArrow,
+				Quantity: Value(42),
 			}),
 		},
 	});
