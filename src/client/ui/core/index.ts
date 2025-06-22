@@ -24,6 +24,6 @@ export * from "./CoreInterfaces";
 export * from "./GameButton"; // Clickable button atom built on `ImageButton`.
 export * from "./GameImage"; // Lightweight wrapper around `ImageLabel`.
 export * from "./GamePanel"; // Foundational Atom that serves as the base of any custom component that would use a Frame object.
-export * from "./GameText"; // Styled text label atom.
-export { InfoLabel, CounterLabel } from "./GameText";
+export * from "./Text"; // Styled text label atom.
+//export { InfoLabel, CounterLabel } from "./GameText";
 //export * from "./GameMeter"; // A simple progress bar component.

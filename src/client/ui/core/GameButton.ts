@@ -27,7 +27,7 @@ import { GameColors } from "../quarks";
 import { GamePanel } from "./GamePanel";
 import { BorderImage, GameImage } from "./GameImage";
 import { GamePanelProps } from "./CoreInterfaces";
-import { GameText } from "./GameText";
+import { GameText } from "./Text/GameText";
 
 /* =============================================== GameButton Props ========================================= */
 export interface GameButtonProps extends GamePanelProps {
@@ -62,15 +62,24 @@ export const GameButton = (props: GameButtonProps) => {
 	const buttonText = GameText({ ValueText: Value(props.ButtonText ?? "") });
 
 	props.Name = props.Name ?? "GameButton";
+	props.BorderImage = props.BorderImage ?? DefaultProps.BorderImage;
+	props.BackgroundTransparency = props.BackgroundTransparency ?? DefaultProps.BackgroundTransparency;
+
+	props.AnchorPoint = props.AnchorPoint ?? new Vector2(0.5, 0.5);
+	props.Position = props.Position ?? UDim2.fromScale(0.5, 0.5);
+	props.Size = props.Size ?? DefaultProps.Size;
+	props.DragEnabled = props.DragEnabled ?? false;
+	props.LayoutOrder = props.LayoutOrder ?? 0;
 
 	const customComponent = GamePanel({
 		Name: props.Name,
-		BorderImage: props.BorderImage ?? BorderImage.GothicMetal(),
-		AnchorPoint: props.AnchorPoint ?? new Vector2(0.5, 0.5),
+		BorderImage: props.BorderImage,
+		AnchorPoint: props.AnchorPoint,
+		Position: props.Position,
 		BackgroundColor3: bgColor,
-		BackgroundTransparency: props.BackgroundTransparency ?? 0.6,
-		Size: props.Size ?? UDim2.fromOffset(100, 40),
-		LayoutOrder: props.LayoutOrder ?? 0,
+		BackgroundTransparency: props.BackgroundTransparency,
+		Size: props.Size,
+		LayoutOrder: props.LayoutOrder,
 		[OnEvent("MouseEnter")]: () => isHovered.set(true),
 		[OnEvent("MouseLeave")]: () => isHovered.set(false),
 		Children: {

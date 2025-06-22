@@ -1,1 +1,1 @@
-export * from "../../core/GameText";
+export * from "../../core/Text/GameText";

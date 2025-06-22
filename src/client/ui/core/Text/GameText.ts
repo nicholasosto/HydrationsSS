@@ -20,11 +20,17 @@
  *   @rbxts/fusion ^0.4.0
  */
 
-import Fusion, { New, Children, Computed, Value, OnEvent } from "@rbxts/fusion";
-import { GameColors, Layout, ShadowGradient } from "../quarks";
-import { GamePanel } from "./GamePanel";
-import { BorderImage } from "./GameImage";
-import { GameTextProps, InfoLabelProps, CounterLabelProps } from "./CoreInterfaces";
+import Fusion, { New, Children, Computed, Value, OnEvent, PropertyTable } from "@rbxts/fusion";
+import { GameColors, Layout, ShadowGradient } from "../../quarks";
+import { GamePanel } from "../GamePanel";
+import { BorderImage } from "../GameImage";
+import { InfoLabelProps } from "../CoreInterfaces";
+
+export interface GameTextProps extends PropertyTable<TextLabel> {
+	ValueText?: Fusion.Value<string | number>;
+	HoverText?: string | Fusion.Value<string>;
+	Variant?: "flat" | "recessed" | "extruded";
+}
 
 export const GameText = (props: GameTextProps) => {
 	const textState = typeIs(props.ValueText, "table")
@@ -32,23 +38,11 @@ export const GameText = (props: GameTextProps) => {
 		: Value(props.ValueText ?? "");
 
 	const hoverState = Value(false);
-	const hoverLabel = props.HoverText
-		? New("TextLabel")({
-				Name: "HoverText",
-				AnchorPoint: new Vector2(0.5, 1),
-				BackgroundColor3: GameColors.BackgroundDefault,
-				BackgroundTransparency: 0.2,
-				Position: UDim2.fromScale(0.5, 0),
-				Size: UDim2.fromOffset(80, 20),
-				Visible: hoverState,
-				FontFace: new Font("rbxasset://fonts/families/Inconsolata.json"),
-				Text: typeIs(props.HoverText, "table")
-					? Computed(() => (props.HoverText as Fusion.Value<string>).get())
-					: tostring(props.HoverText),
-				TextColor3: GameColors.TextDefault,
-				TextSize: typeIs(props.TextSize, "number") ? (props.TextSize as number) * 0.8 : 16,
-			})
-		: undefined;
+	const DisplayText = Computed(() => {
+		const text = textState.get();
+		const hoverText = "Hovered";
+		return `${tostring(text)} ${hoverState.get() ? `Hovered` : ""}`;
+	});
 
 	return New("TextLabel")({
 		Name: props.Name ?? "GameText",
@@ -59,13 +53,12 @@ export const GameText = (props: GameTextProps) => {
 		Position: props.Position ?? UDim2.fromScale(0.5, 0.5),
 		Size: props.Size ?? UDim2.fromScale(1, 1),
 		TextSize: props.TextSize ?? 24,
-		Text: Computed(() => tostring(textState.get())),
+		Text: DisplayText,
 		TextColor3: props.TextColor3 ?? GameColors.TextDefault,
 		TextScaled: false,
-		[OnEvent("MouseEnter")]: props.HoverText ? () => hoverState.set(true) : undefined,
-		[OnEvent("MouseLeave")]: props.HoverText ? () => hoverState.set(false) : undefined,
+		[OnEvent("MouseEnter")]: () => hoverState.set(true),
+		[OnEvent("MouseLeave")]: () => hoverState.set(false),
 		[Children]: {
-			Hover: hoverLabel,
 			Corner: props.Variant ? New("UICorner")({}) : undefined,
 			Shadow: props.Variant === "recessed" ? ShadowGradient() : undefined,
 		},
@@ -102,4 +95,4 @@ export const InfoLabel = (props: InfoLabelProps) => {
 	});
 };
 
-export const CounterLabel = (props: CounterLabelProps) => InfoLabel(props);
+//export const CounterLabel = (props: CounterLabelProps) => InfoLabel(props);
