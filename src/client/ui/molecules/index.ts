@@ -4,3 +4,4 @@ export * from "./CooldownBar";
 export * from "./DialogueBox";
 export * from "./ItemSlot";
 export * from "./TitleBar";
+export * from "./SettingListItem";
